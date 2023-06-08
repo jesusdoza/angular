@@ -1,45 +1,46 @@
-<p>list-todos works!</p>
+<h1>My Todos</h1>
+<div class="container">
+    <table class="table" border="'1">
 
+        <thead>
+            <tr>
+                <th>
+                    id
+                </th>
+                <th>
+                    description
+                </th>
+                <th>
+                    Target Date
+                </th>
+                <th>
+                    Done
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of todos">
+                <td>
+                    {{item.id}}
+                </td>
+                <td>
+                    {{
+                    item.description
+                    }}
+                </td>
+                <td>
+                    {{
+                    item.targetDate | date : "short" : "GMT-1" | uppercase
+                    }}
+                </td>
+                <td>
+                    {{
+                    item.done
+                    }}
+                </td>
 
-<table border="'1">
-    <caption>Todo list</caption>
-    <thead>
-        <tr>
-            <th>
-                id
-            </th>
-            <th>
-                description
-            </th>
-            <th>
-                Target Date
-            </th>
-            <th>
-                Done
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of todos">
-            <td>
-                {{item.id}}
-            </td>
-            <td>
-                {{
-                item.description
-                }}
-            </td>
-            <td>
-                {{
-                item.targetDate | date : "short" : "GMT-1" | uppercase
-                }}
-            </td>
-            <td>
-                {{
-                item.done
-                }}
-            </td>
+            </tr>
+        </tbody>
+    </table>
 
-        </tr>
-    </tbody>
-</table>
+</div>

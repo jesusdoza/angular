@@ -14,7 +14,6 @@ export class LoginComponent {
 
   constructor(private router: Router) {}
 
-
   handleLogin() {
     if (this.username === 'bob' && this.password === 'bob') {
       this.invalidLogin = false;
