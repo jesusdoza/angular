@@ -11,6 +11,12 @@
             <th>
                 description
             </th>
+            <th>
+                Target Date
+            </th>
+            <th>
+                Done
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +27,16 @@
             <td>
                 {{
                 item.description
+                }}
+            </td>
+            <td>
+                {{
+                item.targetDate | date : "short" : "GMT-1" | uppercase
+                }}
+            </td>
+            <td>
+                {{
+                item.done
                 }}
             </td>
 
