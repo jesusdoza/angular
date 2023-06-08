@@ -14,11 +14,12 @@ export class LoginComponent {
 
   constructor(private router: Router) {}
 
+
   handleLogin() {
     if (this.username === 'bob' && this.password === 'bob') {
       this.invalidLogin = false;
       //redirect to welcome page
-      this.router.navigate(['welcome']);
+      this.router.navigate(['welcome', this.username]);
     } else {
       this.invalidLogin = true;
     }
