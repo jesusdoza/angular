@@ -3,6 +3,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   CanActivateFn,
+  Router,
   RouterStateSnapshot,
 } from '@angular/router';
 import { HardcodedAthenticationService } from './hardcoded-athentication.service';
@@ -12,12 +13,18 @@ import { HardcodedAthenticationService } from './hardcoded-athentication.service
 })
 export class RouteGuardService implements CanActivate {
   constructor(
-    private hardcodedAthenticationService: HardcodedAthenticationService
+    private hardcodedAthenticationService: HardcodedAthenticationService,
+    public router: Router
   ) {}
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) {
     if (this.hardcodedAthenticationService.isUserLoggedIn()) {
       return true;
     }
+
+    this.router.navigate(['login']);
     return false;
   }
 }
