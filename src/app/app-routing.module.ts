@@ -5,7 +5,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { LogoutComponent } from './logout/logout.component';
-import { RouteGuardService } from './service/route-guard.service';
+// import { RouteGuardService } from './service/route-guard.service'; // deprecated use function instead
 import { routeGuard } from './guardsfn/route.guard';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'welcome/:name',
     component: WelcomeComponent,
-    canActivate: [RouteGuardService],
+    canActivate: [routeGuard],
   },
   {
     path: 'todos',
