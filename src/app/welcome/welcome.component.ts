@@ -19,7 +19,8 @@ export class WelcomeComponent {
   ) {}
 
   getWelcomeMessage() {
-    console.log('button clicked');
-    this.service.executeBeanService();
+    // console.log('button clicked');
+    const bean = this.service.executeBeanService().subscribe();
+    console.log(bean);
   }
 }
