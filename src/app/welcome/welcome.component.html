@@ -2,4 +2,10 @@
 
     <h1>Welcome {{name}}</h1>
     view todos <a routerLink="/todos">here</a>
+    <section>
+        <h2>Click here to get a welcome message</h2>
+        <div>
+            <button class="btn btn-success" (click)="getWelcomeMessage()">Get Welcome Message</button>
+        </div>
+    </section>
 </section>
