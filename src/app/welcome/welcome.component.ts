@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { WelcomeDataService } from '../service/data/welcome-data.service';
+import { ActivatedRoute, ChildrenOutletContexts } from '@angular/router';
+import {
+  HelloWorldBean,
+  WelcomeDataService,
+} from '../service/data/welcome-data.service';
+
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -8,7 +12,7 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 })
 export class WelcomeComponent {
   name = '';
-  welcomeMessage = `Welcome`;
+  welcomeMessage = '';
   ngOnInit() {
     // get the route parameter with name key
     this.name = this.route.snapshot.params['name'];
@@ -19,8 +23,20 @@ export class WelcomeComponent {
   ) {}
 
   getWelcomeMessage() {
-    // console.log('button clicked');
-    const bean = this.service.executeBeanService().subscribe();
-    console.log(bean);
+    const bean = this.service.executeBeanService().subscribe(
+      (response) => this.handleSucessfulResponse(response),
+      (error) => this.handleErrorResponse(error)
+    );
+  }
+
+  handleSucessfulResponse(object: Object) {
+    let response = object as HelloWorldBean;
+
+    this.welcomeMessage = `Welcome to the app ${response.message}`;
+  }
+
+  handleErrorResponse(error: any) {
+    this.welcomeMessage = error.error.message;
+    console.log(error);
   }
 }
