@@ -23,10 +23,12 @@ export class WelcomeComponent {
   ) {}
 
   getWelcomeMessage() {
-    const bean = this.service.executeBeanService().subscribe(
-      (response) => this.handleSucessfulResponse(response),
-      (error) => this.handleErrorResponse(error)
-    );
+    const bean = this.service
+      .executeBeanService()
+      .subscribe({
+        next: (response) => this.handleSucessfulResponse(response),
+        error: (error) => this.handleErrorResponse(error),
+      });
   }
 
   handleSucessfulResponse(object: Object) {
