@@ -13,8 +13,19 @@ export class WelcomeDataService {
   executeBeanService() {
     //console.log('bean service called');
 
+    ///will http.get will return an observable of type helloworldbean
     const result = this.http.get<HelloWorldBean>(
       'http://localhost:8080/hello-world-bean'
+    );
+    return result;
+  }
+
+  executePathVariableService(name: string) {
+    //console.log('bean service called');
+
+    ///will http.get will return an observable of type helloworldbean
+    const result = this.http.get<HelloWorldBean>(
+      `http://localhost:8080/hello-world/path-variable/${name}`
     );
     return result;
   }

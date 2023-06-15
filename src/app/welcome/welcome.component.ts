@@ -4,6 +4,7 @@ import {
   HelloWorldBean,
   WelcomeDataService,
 } from '../service/data/welcome-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-welcome',
@@ -13,6 +14,7 @@ import {
 export class WelcomeComponent {
   name = '';
   welcomeMessage = '';
+
   ngOnInit() {
     // get the route parameter with name key
     this.name = this.route.snapshot.params['name'];
@@ -23,12 +25,18 @@ export class WelcomeComponent {
   ) {}
 
   getWelcomeMessage() {
-    const bean = this.service
-      .executeBeanService()
-      .subscribe({
-        next: (response) => this.handleSucessfulResponse(response),
-        error: (error) => this.handleErrorResponse(error),
-      });
+    const bean = this.service.executeBeanService().subscribe({
+      next: (response) => this.handleSucessfulResponse(response),
+      error: (error) => this.handleErrorResponse(error),
+    });
+  }
+
+  //path parameter message
+  getWelcomeMessagePathVariable(name: string) {
+    const bean = this.service.executePathVariableService(name).subscribe({
+      next: (response) => this.handleSucessfulResponse(response),
+      error: (error) => this.handleErrorResponse(error),
+    });
   }
 
   handleSucessfulResponse(object: Object) {

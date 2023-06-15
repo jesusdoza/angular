@@ -26,6 +26,6 @@ public class HelloWorldController {
   public HelloWorldBean helloWorldPathVariable(@PathVariable String name){
     var bob = "bob";
 
-    return new HelloWorldBean(String.format("Hello World, %1$s %2$s", name,bob));
+    return new HelloWorldBean(String.format("Hello World, %1$s", name));
   }
 }
