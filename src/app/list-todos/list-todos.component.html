@@ -1,25 +1,83 @@
 <h1>My Todos</h1>
 <div class="container">
-    <table class="table" border="'1">
+    <section>
+        <h2>with subscribe and looping over in template</h2>
 
-        <thead>
-            <tr>
-                <th>
-                    id
-                </th>
-                <th>
-                    description
-                </th>
-                <th>
-                    Target Date
-                </th>
-                <th>
-                    Done
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of todos">
+        <code>
+
+        </code>
+
+        <table class="table" border="'1">
+
+            <thead>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        description
+                    </th>
+                    <th>
+                        Target Date
+                    </th>
+                    <th>
+                        Done
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of todos">
+                    <td>
+                        {{item.id}}
+                    </td>
+                    <td>
+                        {{
+                        item.description
+                        }}
+                    </td>
+                    <td>
+                        {{
+                        item.targetDate | date| uppercase
+                        }}
+                    </td>
+                    <td>
+                        {{
+                        item.done
+                        }}
+                    </td>
+
+                </tr>
+
+
+
+            </tbody>
+        </table>
+
+    </section>
+
+    <section>
+        <h2>with observable using async pipe </h2>
+        <code>
+            *ngFor="let item of todos$ | async"
+        </code>
+        <table class="table" border="'1">
+            <thead>
+                <tr>
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        description
+                    </th>
+                    <th>
+                        Target Date
+                    </th>
+                    <th>
+                        Done
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let item of todos$ | async ">
                 <td>
                     {{item.id}}
                 </td>
@@ -40,7 +98,6 @@
                 </td>
 
             </tr>
-        </tbody>
-    </table>
-
+        </table>
+    </section>
 </div>
