@@ -1,4 +1,4 @@
-package com.rest.webservice.restwebservice.controllers;
+package com.rest.webservice.restwebservice.controllers.helloworld;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

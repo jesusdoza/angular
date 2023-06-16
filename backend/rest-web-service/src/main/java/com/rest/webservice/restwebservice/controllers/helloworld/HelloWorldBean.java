@@ -1,4 +1,4 @@
-package com.rest.webservice.restwebservice.controllers;
+package com.rest.webservice.restwebservice.controllers.helloworld;
 
 public class HelloWorldBean {
 
