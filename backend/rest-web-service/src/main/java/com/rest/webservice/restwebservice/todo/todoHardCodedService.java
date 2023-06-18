@@ -5,10 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import javax.swing.text.html.Option;
+import java.util.*;
 
 @Service
 public class todoHardCodedService {
@@ -29,10 +27,11 @@ public List<Todo> findAll(){
 }
 
 
-  public void deleteTodo(long id){
-    Optional todo = findById(id);
+  public Todo deleteById(long id){
+    //find the item by id and delete it then return deleted item or return default item
+    Todo todo = findById(id).orElse(new Todo(0,"bob","no desc", new Date(),false));
     todos.remove(todo);
-
+    return todo;
   }
 
   public Optional<Todo> findById(long id) {
