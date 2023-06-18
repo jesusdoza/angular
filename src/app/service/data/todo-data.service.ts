@@ -10,9 +10,20 @@ export class TodoDataService {
 
   retrieveAllTodos(username: string) {
     ///will http.get will return an observable of type helloworldbean
-    const result = this.http.get<Todo[]>(
+    const observable = this.http.get<Todo[]>(
       `http://localhost:8080/users/${username}/todos`
     );
-    return result;
+    return observable;
+  }
+
+  deleteTodo(username: string, id: number) {
+    if (!username || !id) {
+      throw Error('no username or id provided');
+      return;
+    }
+    const observable = this.http.delete<Todo[]>(
+      `http://localhost:8080/users/${username}/todos/${id}`
+    );
+    return observable;
   }
 }

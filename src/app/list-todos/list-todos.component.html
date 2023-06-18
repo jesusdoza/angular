@@ -1,4 +1,5 @@
 <h1>My Todos</h1>
+<div class="alert alert-success" *ngIf="message">{{message}}</div>
 <div class="container">
     <section>
         <h2>with subscribe and looping over in template</h2>
@@ -23,6 +24,12 @@
                     <th>
                         Done
                     </th>
+                    <th>
+                        Update
+                    </th>
+                    <th>
+                        Delete
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +51,15 @@
                         {{
                         item.done
                         }}
+                    </td>
+                    <td>
+                        <Button class="btn btn-primary" (click)="updateTodo(item.id)">Update</Button>
+
+                    </td>
+                    <td>
+                        <div class="container">
+                            <Button class="btn btn-danger" (click)="deleteTodo(item.id)">Delete</Button>
+                        </div>
                     </td>
 
                 </tr>
