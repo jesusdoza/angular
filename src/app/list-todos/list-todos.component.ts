@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 export class Todo {
+  username: string = '';
   constructor(
     public id: number,
     public description: string,

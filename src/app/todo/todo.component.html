@@ -15,5 +15,14 @@
             <button class="btn btn-success" (click)="saveTodo()">Save</button>
         </section>
     </form>
+    <section>
+        <span>
+            {{todo.id}}
+            {{todo.username}}
+            {{todo.description}}
+            {{todo.done}}
+            {{todo.targetDate | date}}
+        </span>
+    </section>
 
 </section>

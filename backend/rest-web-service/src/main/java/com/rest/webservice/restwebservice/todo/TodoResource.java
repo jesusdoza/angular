@@ -7,10 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,6 +22,12 @@ public class TodoResource {
 
   }
 
+  @GetMapping(path = "/users/{username}/todos/{id}")
+  public Todo getTodo(@PathVariable String username, @PathVariable long id){
+    return todoService.findById(id).orElse(new Todo(0,"no username","no desc", new Date(),false));
+
+  }
+
   @DeleteMapping(path = "users/{username}/todos/{id}")
   public ResponseEntity<String> deleteTodo(@PathVariable long id, @PathVariable String username){
     Todo deletedTodo = todoService.deleteById(id);
@@ -35,7 +38,7 @@ public class TodoResource {
     }
     return  ResponseEntity.notFound().build();
 //    return new ResponseEntity<String>("No Item found", HttpStatus.NOT_FOUND);
-    
+
   }
 
 

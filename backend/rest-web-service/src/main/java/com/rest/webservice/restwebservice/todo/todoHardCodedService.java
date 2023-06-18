@@ -1,11 +1,7 @@
 package com.rest.webservice.restwebservice.todo;
 
-import com.fasterxml.jackson.datatype.jdk8.OptionalDoubleSerializer;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service
