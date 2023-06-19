@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
+  //
   id: number = 0;
   todo: Todo = new Todo(0, '', false, new Date());
 
@@ -17,6 +18,8 @@ export class TodoComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {}
+
+  ///get an todo by ID number
   getTodo(id: number) {
     this.todoService.retrieveTodo('bob', id).subscribe({
       next: (res) => {
@@ -26,11 +29,14 @@ export class TodoComponent {
       },
     });
   }
+
+  ///save todo
   saveTodo() {}
 
+  ///execute on component initialization
   ngOnInit() {
-    this.getTodo(1);
     this.id = this.route.snapshot.params['id'];
+    this.getTodo(this.id);
     console.log(`id is ${this.id}`);
   }
 }
