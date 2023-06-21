@@ -32,6 +32,7 @@ public List<Todo> findAll(){
     }else{
       //delete the original and add new version
       deleteById(todo.getId());
+      todo.setId(++idCounter);
       todos.add(todo);
 
     }

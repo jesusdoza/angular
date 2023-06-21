@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.*;
 
 //CONTROLLER that controls the service of TODOFILES
@@ -45,12 +47,17 @@ public class TodoResource {
 
 
   //todo post mapping for post
-  @PostMapping(path = "/users/{username}/todos/{id}")
-  public ResponseEntity<String> saveTodo(@PathVariable String username, @PathVariable long id){
+  @PostMapping(path = "/users/{username}/todos")
+  public ResponseEntity<Void> saveTodo(@PathVariable String username, @RequestBody Todo todo){
 
-    Gson gson  = new Gson();
+    Todo createdTodo = todoService.saveTodo(todo).get();
 
-    return null;
+    URI uri = ServletUriComponentsBuilder
+      .fromCurrentRequest()
+      .path("/{id}")
+      .buildAndExpand(createdTodo.getId()).toUri();
+
+    return ResponseEntity.created(uri).build();
   }
 
   @PutMapping(path = "/users/{username}/todos/{id}")
