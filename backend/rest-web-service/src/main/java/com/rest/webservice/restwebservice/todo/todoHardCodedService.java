@@ -2,6 +2,7 @@ package com.rest.webservice.restwebservice.todo;
 
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service
@@ -22,6 +23,20 @@ public List<Todo> findAll(){
     return todos;
 }
 
+  public Optional<Todo> saveTodo(Todo todo){
+
+    if(todo.getId() == -1){
+      todo.setId(++idCounter);
+      todos.add(todo);
+
+    }else{
+      //delete the original and add new version
+      deleteById(todo.getId());
+      todos.add(todo);
+
+    }
+    return Optional.ofNullable(todo);
+  }
 
   public Todo deleteById(long id){
     //find the item by id and delete it then return deleted item or return default item
