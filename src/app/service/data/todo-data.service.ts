@@ -23,6 +23,14 @@ export class TodoDataService {
     return observable;
   }
 
+  saveTodo(username: string, id: string, data: string) {
+    const observable = this.http.post<Todo>(
+      `http://localhost:8080/users/${username}/todos/${id}`,
+      data
+    );
+    return observable;
+  }
+
   deleteTodo(username: string, id: number) {
     if (!username || !id) {
       throw Error('no username or id provided');

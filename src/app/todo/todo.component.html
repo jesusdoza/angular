@@ -3,11 +3,13 @@
         <fieldset class="form-group">
             <label for="description">Description</label>
 
-            <input class="form-control" type="text" name="description" required>
+            <input class="form-control" (change)="changeFn($event)" [(ngModel)]="todo.description" type="text"
+                name="description" required>
         </fieldset>
         <fieldset class="form-group">
             <label for="tagetDate">Target Date</label>
-            <input class="form-control" type="date" name="targetDate" required>
+            <input class="form-control" [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
+                (ngModelChange)="todo.targetDate=$event" type="date" name="targetDate" required>
 
         </fieldset>
         <section class="container p-3 ">

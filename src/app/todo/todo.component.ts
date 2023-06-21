@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Todo } from '../list-todos/list-todos.component';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,18 +14,21 @@ export class TodoComponent {
   todo: Todo = new Todo(0, '', false, new Date());
 
   constructor(
+    ///data service for todo database
     private todoService: TodoDataService,
+    ///router to be able to reroute
     private router: Router,
+    ///activated route to see route parameters
     private route: ActivatedRoute
   ) {}
 
   ///get an todo by ID number
   getTodo(id: number) {
     this.todoService.retrieveTodo('bob', id).subscribe({
-      next: (res) => {
-        console.log(res);
+      next: (data) => {
+        console.log(data);
 
-        this.todo = res;
+        this.todo = data;
       },
     });
   }
@@ -35,8 +38,15 @@ export class TodoComponent {
 
   ///execute on component initialization
   ngOnInit() {
+    //get ID from route parameters map
     this.id = this.route.snapshot.params['id'];
+
+    //get todo by id
     this.getTodo(this.id);
     console.log(`id is ${this.id}`);
+  }
+
+  changeFn(event: Event) {
+    console.log(event);
   }
 }
