@@ -34,12 +34,30 @@ export class TodoComponent {
   }
 
   ///save todo
-  saveTodo() {}
+  /*
+  return new updated object on success or nothing on failure
+  */
+  saveTodo() {
+    this.todoService.updateTodo('bob', this.id, this.todo).subscribe({
+      next: (data) => {
+        if (data.id !== this.id) {
+          console.log('error updateTodo ', data);
+          return;
+        }
+        this.router.navigate(['todos']);
+        return;
+      },
+      error: (error) => {
+        console.log(`error saveTodo(),`, error);
+      },
+    });
+  }
 
   ///execute on component initialization
   ngOnInit() {
     //get ID from route parameters map
-    this.id = this.route.snapshot.params['id'];
+    // this.id = this.route.snapshot.params['id']; //! error is getting string but Typescript not getting mad
+    this.id = Number(this.route.snapshot.params['id']);
 
     //get todo by id
     this.getTodo(this.id);

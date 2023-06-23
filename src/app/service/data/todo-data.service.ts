@@ -41,4 +41,13 @@ export class TodoDataService {
     );
     return observable;
   }
+
+  updateTodo(username: string, id: number, todo: Todo) {
+    ///will http.get will return an observable of type helloworldbean
+    const observable = this.http.put<Todo>(
+      `http://localhost:8080/users/${username}/todos/${id}`,
+      todo
+    );
+    return observable;
+  }
 }

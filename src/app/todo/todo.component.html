@@ -8,7 +8,7 @@
         </fieldset>
         <fieldset class="form-group">
             <label for="tagetDate">Target Date</label>
-            <input class="form-control" [ngModel]="todo.targetDate | date:'yyyy-MM-dd'"
+            <input class="form-control" [ngModel]="todo.targetDate | date:'yyyy-MM-dd':'UTC' "
                 (ngModelChange)="todo.targetDate=$event" type="date" name="targetDate" required>
 
         </fieldset>

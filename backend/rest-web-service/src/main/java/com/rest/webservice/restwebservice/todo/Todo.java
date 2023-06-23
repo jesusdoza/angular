@@ -7,7 +7,7 @@ public class Todo {
   private long id;
   private String username;
   private String description;
-  private Date targetDate;
+  private Date targetDate = new Date();
   private boolean isDone;
 
   protected Todo(){}
@@ -30,6 +30,17 @@ public class Todo {
     if (o == null || getClass() != o.getClass()) return false;
     Todo todo = (Todo) o;
     return id == todo.id;
+  }
+
+  @Override
+  public String toString() {
+    return "Todo{" +
+      "id=" + id +
+      ", username='" + username + '\'' +
+      ", description='" + description + '\'' +
+      ", targetDate=" + targetDate +
+      ", isDone=" + isDone +
+      '}';
   }
 
   public long getId() {
@@ -71,6 +82,4 @@ public class Todo {
   public void setDone(boolean done) {
     isDone = done;
   }
-
-
 }

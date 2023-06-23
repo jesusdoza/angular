@@ -23,20 +23,30 @@ public List<Todo> findAll(){
     return todos;
 }
 
+//save item
+ /*
+ check id if its -1 or 0 change ID to something else and then save
+ else delete old version and resave under same ID
+ returns new version that was inserted || empty optional
+ */
   public Optional<Todo> saveTodo(Todo todo){
+    try{
+      //replace id if it is -1 or 0 with new id
+      if(todo.getId() == -1 || todo.getId() == 0 ){
+        todo.setId(++idCounter);
+        todos.add(todo);
+      }else{
+        //update todoItem
+        //delete the original and add new version
+        deleteById(todo.getId());
+        todos.add(todo);
+      }
+      return Optional.ofNullable(todo);
 
-    if(todo.getId() == -1){
-      todo.setId(++idCounter);
-      todos.add(todo);
-
-    }else{
-      //delete the original and add new version
-      deleteById(todo.getId());
-      todo.setId(++idCounter);
-      todos.add(todo);
-
+    }catch(Exception err){
+      System.out.println("error saveTodo");
+      return Optional.empty();
     }
-    return Optional.ofNullable(todo);
   }
 
   public Todo deleteById(long id){
