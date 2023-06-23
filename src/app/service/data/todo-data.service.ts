@@ -8,6 +8,14 @@ import { Todo } from 'src/app/list-todos/list-todos.component';
 export class TodoDataService {
   constructor(private http: HttpClient) {}
 
+  createTodo(username: string, todo: Todo) {
+    const observable = this.http.post<Todo>(
+      `http://localhost:8080/users/${username}/todos`,
+      todo
+    );
+    return observable;
+  }
+
   retrieveAllTodos(username: string) {
     ///will http.get will return an observable of type helloworldbean
     const observable = this.http.get<Todo[]>(

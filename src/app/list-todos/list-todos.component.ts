@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 export class Todo {
   username: string = '';
+
   constructor(
     public id: number,
     public description: string,
@@ -23,11 +24,10 @@ export class ListTodosComponent {
   message = '';
   todos: Todo[] = [];
   todos$: Observable<Todo[]> | null = null;
-  // todo = [
-  //   new Todo(12, 'this is desc', false, new Date()),
-  //   new Todo(14, 'this is desc14', false, new Date()),
-  //   new Todo(16, 'this fdsafasc', false, new Date()),
-  // ];
+
+  addTodo() {
+    this.router.navigate(['todos', -1]);
+  }
 
   deleteTodo(id: number) {
     //todo remove hardcoded username

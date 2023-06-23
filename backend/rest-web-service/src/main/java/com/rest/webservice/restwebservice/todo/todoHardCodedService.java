@@ -63,7 +63,7 @@ public List<Todo> findAll(){
         return Optional.ofNullable(todo);
       }
     }
-    //didnt find the todoObj so returning optinal that is empty
+    //didnt find the todoObj so returning optional that is empty
     return Optional.empty();
   }
 }

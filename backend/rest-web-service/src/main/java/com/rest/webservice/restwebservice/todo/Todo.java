@@ -4,11 +4,11 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Todo {
-  private long id;
-  private String username;
-  private String description;
+  private long id=-1;
+  private String username="";
+  private String description="";
   private Date targetDate = new Date();
-  private boolean isDone;
+  private boolean isDone=false;
 
   protected Todo(){}
   public Todo(long id, String username, String description, Date targetDate , boolean isDone) {
