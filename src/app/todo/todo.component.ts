@@ -17,6 +17,7 @@ export class TodoComponent {
   //
   id: number = 0;
   todo: Todo = new Todo(-1, '', false, new Date());
+  
 
   constructor(
     ///data service for todo database
@@ -44,15 +45,14 @@ export class TodoComponent {
   */
   saveTodo() {
     //empty description should not be saved
-    if (this.todo.description === '') {
-      console.log('todo is empty');
-      return;
-    }
+    if(!this.isValidSubmit())return;
 
-    //TODO why on id
-    console.log('this.todo.id', this.todo.id);
+
+    //new todo create it
     if (this.todo.id === -1) {
-      console.log('this.todo', this.todo);
+      // case: todo is new create a new entry
+     console.log('created new todo');
+     
       this.todoService.createTodo('bob', this.todo).subscribe({
         next: (data) => {
           this.router.navigate(['todos']);
@@ -63,7 +63,7 @@ export class TodoComponent {
         },
       });
     } else {
-      //valid todo with description
+    //  case: existing todo update instead
       this.todoService.updateTodo('bob', this.id, this.todo).subscribe({
         next: (data) => {
           if (data.id !== this.id) {
@@ -93,6 +93,15 @@ export class TodoComponent {
       this.getTodo(this.id);
       console.log(`id is ${this.id}`);
     }
+  }
+
+  isValidSubmit(){
+    if (this.todo.description === '') {
+      console.log('todo is empty');
+      return false;
+    }
+
+    return true;
   }
 
   changeFn(event: Event) {
