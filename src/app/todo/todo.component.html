@@ -1,4 +1,6 @@
 <section class="container">
+    <!-- only display ngif if todoForm reference property of dirty is truthy and value is valid -->
+    <!-- invalid is auto set up according to FormModule rules on forms with classes depending on the state -->
     <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">
         Enter Valid Values
     </div>
