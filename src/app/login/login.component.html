@@ -15,7 +15,26 @@
             <button class="btn btn-success" type="" (click)=handleLogin()>Login</button>
         </div>
 
+
     </form>
+    <form action="">
+        <div>
+            <h2>basic auth</h2>
+            <div>
+                username : <input type="text" name="username" [(ngModel)]="username">
+
+            </div>
+            <div>
+                password : <input type="password" name="password" [(ngModel)]="password">
+
+            </div>
+
+            <button class="btn btn-success" type="" (click)=handleBasicAuthLogin()>Login basic auth</button>
+        </div>
+    </form>
+    <hr>
+
+
 
 
 </section>

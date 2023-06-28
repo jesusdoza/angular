@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAthenticationService } from '../service/hardcoded-athentication.service';
+import { BasicAthenticationService } from '../service/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private hardcodedAthenticationService: HardcodedAthenticationService
+    private hardcodedAthenticationService: HardcodedAthenticationService,
+    private basicAuthService: BasicAthenticationService
   ) {}
 
   handleLogin() {
@@ -28,9 +30,25 @@ export class LoginComponent {
       this.invalidLogin = false;
       //redirect to welcome page
       this.router.navigate(['welcome', this.username]);
-    } else {
-      this.invalidLogin = true;
+      return false;
     }
+
+    this.invalidLogin = true;
+    //returning false to keep from refreshing on form
+    return false;
+  }
+
+  handleBasicAuthLogin() {
+    this.basicAuthService
+      .executeAuthenticationService(this.username, this.password)
+      .subscribe({
+        next: (value) => {
+          console.log(`value `, value);
+        },
+        error: (err) => {
+          this.invalidLogin = true;
+        },
+      });
 
     //returning false to keep from refreshing on form
     return false;
