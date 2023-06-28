@@ -39,14 +39,17 @@ export class LoginComponent {
   }
 
   handleBasicAuthLogin() {
+    this.invalidLogin = false;
     this.basicAuthService
       .executeAuthenticationService(this.username, this.password)
       .subscribe({
-        next: (value) => {
-          console.log(`value `, value);
+        next: (data) => {
+          console.log(`value `, data);
+          this.router.navigate(['welcome', this.username]);
         },
         error: (err) => {
           this.invalidLogin = true;
+          console.log(err);
         },
       });
 
