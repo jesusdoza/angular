@@ -45,7 +45,7 @@ export class LoginComponent {
       .subscribe({
         next: (data) => {
           console.log(`value `, data);
-          // this.router.navigate(['welcome', this.username]);
+          this.router.navigate(['welcome', this.username]);
         },
         error: (err) => {
           this.invalidLogin = true;

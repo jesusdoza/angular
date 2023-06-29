@@ -8,9 +8,14 @@
         </div>
         <div>
 
-            username : <input type="text" name="username" [(ngModel)]="username">
+            <div>
+                username : <input type="text" name="username" [(ngModel)]="username">
+            </div>
 
-            password : <input type="password" name="password" [(ngModel)]="password">
+            <div>
+                password : <input type="password" name="password" [(ngModel)]="password">
+
+            </div>
 
             <button class="btn btn-success" type="" (click)=handleBasicAuthLogin()>Login</button>
         </div>

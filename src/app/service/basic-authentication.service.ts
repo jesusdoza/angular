@@ -28,12 +28,22 @@ export class BasicAthenticationService {
       .pipe(
         map((data) => {
           sessionStorage.setItem('authenticatedUser', username);
+          sessionStorage.setItem('token', basicAuthHeaderString);
           return data;
         })
       );
     return auth$;
   }
 
+  getAuthenticatedUser() {
+    return sessionStorage.getItem('authenticatedUser');
+  }
+  getAuthenticatedToken() {
+    if (this.getAuthenticatedUser()) {
+      return sessionStorage.getItem('token');
+    }
+    return null;
+  }
   isUserLoggedIn() {
     const user = sessionStorage.getItem('authenticatedUser');
     return !(user === null);
@@ -41,6 +51,7 @@ export class BasicAthenticationService {
 
   logout() {
     sessionStorage.removeItem('authenticatedUser');
+    sessionStorage.removeItem('token');
   }
 
   createBasicAuthenticationHttpHeader(user: string, pass: string) {
