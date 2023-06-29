@@ -21,18 +21,16 @@ export class BasicAthenticationService {
     });
 
     ///will http.get will return an observable of type helloworldbean
-    const auth$ = this.http.get<AuthenticationBean>(
-      `http://localhost:8080/basicauth`,
-      {
+    const auth$ = this.http
+      .get<AuthenticationBean>(`http://localhost:8080/basicauth`, {
         headers: headerData,
-      }
-    );
-    // .pipe(
-    //   map((data) => {
-    //     sessionStorage.setItem('authenticatedUser', username);
-    //     return data
-    //   })
-    // );
+      })
+      .pipe(
+        map((data) => {
+          sessionStorage.setItem('authenticatedUser', username);
+          return data;
+        })
+      );
     return auth$;
   }
 

@@ -15,19 +15,32 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SpringSecurityConfigurationBasicAuth{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    return
-                http
-                    .authorizeHttpRequests(
-                        auth ->
-                            auth
-                            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                            .anyRequest().authenticated()
-                        )
-                    .httpBasic(Customizer.withDefaults())
-                    .sessionManagement(
-                        session -> session.sessionCreationPolicy
-                        (SessionCreationPolicy.STATELESS))
-                    .csrf(c->c.disable())
-                    .build();
+//customize the http security class and return it after it has been build()
+      http
+        .authorizeHttpRequests(
+          auth ->auth
+            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .anyRequest().authenticated()
+        );
+      http.httpBasic(Customizer.withDefaults());
+      http.sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+      http.csrf(c->c.disable());
+
+
+    return http.build();
+      //or other way since all methods return the object itself as builder pattern
+//             return   http
+//                    .authorizeHttpRequests(
+//                        auth ->
+//                            auth
+//                            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                            .anyRequest().authenticated()
+//                        )
+//                  .httpBasic(Customizer.withDefaults())
+//                    .sessionManagement(
+//                        session -> session.sessionCreationPolicy
+//                        (SessionCreationPolicy.STATELESS))
+//                    .csrf(c->c.disable())
+//                    .build();
     }
 }
