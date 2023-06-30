@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from 'src/app/list-todos/list-todos.component';
+import { API_URL } from 'src/app/app.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class TodoDataService {
 
   createTodo(username: string, todo: Todo) {
     const observable = this.http.post<Todo>(
-      `http://localhost:8080/users/${username}/todos`,
+      `${API_URL}/users/${username}/todos`,
       todo
     );
     return observable;
@@ -19,21 +20,21 @@ export class TodoDataService {
   retrieveAllTodos(username: string) {
     ///will http.get will return an observable of type helloworldbean
     const observable = this.http.get<Todo[]>(
-      `http://localhost:8080/users/${username}/todos`
+      `${API_URL}/users/${username}/todos`
     );
     return observable;
   }
   retrieveTodo(username: string, id: number) {
     ///will http.get will return an observable of type helloworldbean
     const observable = this.http.get<Todo>(
-      `http://localhost:8080/users/${username}/todos/${id}`
+      `${API_URL}/users/${username}/todos/${id}`
     );
     return observable;
   }
 
   saveTodo(username: string, id: string, data: string) {
     const observable = this.http.post<Todo>(
-      `http://localhost:8080/users/${username}/todos/${id}`,
+      `${API_URL}/users/${username}/todos/${id}`,
       data
     );
     return observable;
@@ -45,7 +46,7 @@ export class TodoDataService {
       return;
     }
     const observable = this.http.delete<Todo[]>(
-      `http://localhost:8080/users/${username}/todos/${id}`
+      `${API_URL}/users/${username}/todos/${id}`
     );
     return observable;
   }
@@ -53,7 +54,7 @@ export class TodoDataService {
   updateTodo(username: string, id: number, todo: Todo) {
     ///will http.get will return an observable of type helloworldbean
     const observable = this.http.put<Todo>(
-      `http://localhost:8080/users/${username}/todos/${id}`,
+      `${API_URL}/users/${username}/todos/${id}`,
       todo
     );
     return observable;
