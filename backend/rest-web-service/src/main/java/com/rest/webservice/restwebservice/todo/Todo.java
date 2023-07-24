@@ -1,15 +1,21 @@
 package com.rest.webservice.restwebservice.todo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
+
+
 public class Todo {
   @Id
-  private Long id =(long) -1;
+  @GeneratedValue(generator = "todoId")
+  @SequenceGenerator(name ="todoId", allocationSize = 1 )
+  private Long id;
   private String username="";
   private String description="";
   private Date targetDate = new Date();
